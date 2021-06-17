@@ -33,10 +33,19 @@ public class WinsManager : Singleton<WinsManager>
     }
 
     public void OpenWin(WinType winType) {
-        OpenWin(winType, WinOpenType.FULL);
+        OpenWin(winType, WinOpenType.FULL, false);
     }
 
-    public void OpenWin(WinType winType, WinOpenType winOpenType) {
+    public void OpenWin(WinType winType, WinOpenType winOpenType) 
+    {
+        OpenWin(winType, winOpenType, false);
+    }
+
+    public void OpenWin(WinType winType, bool isCloseOther) {
+        OpenWin(winType, WinOpenType.FULL, isCloseOther);
+    }
+
+    public void OpenWin(WinType winType, WinOpenType winOpenType, bool isCloseOther) {
         if (CheckIsShowing(winType))
         {
             //窗体已在显示的情况
@@ -62,6 +71,23 @@ public class WinsManager : Singleton<WinsManager>
             showingWins.Add(winType, curWin);
             allShowedWins.Add(winType, curWin);
         }
+
+        if (isCloseOther) 
+        {
+            List<WinType> closeList = new List<WinType>();
+            foreach (KeyValuePair< WinType, GameObject> item in showingWins)
+            {
+                if (item.Key != winType) {
+                    closeList.Add(item.Key);
+                    item.Value.SetActive(false);
+                }
+            }
+            for (int i = 1 ; i <= closeList.Count ; i++) 
+            {
+                showingWins.Remove(closeList[i]);
+            }
+        }
+
     }
 
     public void CloseWin(WinType winType) 
