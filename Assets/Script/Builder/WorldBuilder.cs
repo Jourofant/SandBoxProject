@@ -27,7 +27,7 @@ public class WorldBuilder : Singleton<WorldBuilder>
         // 测试用区块生成
         Chunk Test = new Chunk(horizon);
         Vector3 testStart = Vector3.zero;
-        BuildingChunk(Test, testStart);
+        TestBuildingChunk(Test, testStart);
     }
 
     private void BuildingChunk(Chunk chunk, Vector3 start) 
