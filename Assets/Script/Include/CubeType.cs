@@ -7,6 +7,7 @@ using UnityEngine;
 /// </summary>
 public enum CubeType 
 {
+    Air = 0,
     Grass = 1,
     Stone = 2,
 }
