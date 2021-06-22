@@ -25,22 +25,22 @@ public class WorldBuilder : Singleton<WorldBuilder>
     private void Awake()
     {
         // 测试用区块生成
-        //Chunk Test = new Chunk(horizon);
-        //Vector3 testStart = Vector3.zero;
-        //TestBuildingChunk(Test, testStart);
+        Chunk Test = new Chunk(horizon);
+        Vector3 testStart = Vector3.zero;
+        TestBuildingChunk(Test, testStart, 0);
 
         //测试多区块生成，9
-        Chunk[] Test = new Chunk[9];
-        Vector3 testStart = Vector3.zero;
-        int i = 0;
-        for (int x = -1; x <= 1; x++)
-        {
-            for (int z = -1; z <= 1; z++, i++)
-            {
-                Test[i] = new Chunk(horizon);
-                TestBuildingChunk(Test[i], new Vector3(testStart.x+(x*Section.Length), testStart.y, testStart.z+(z*Section.Length)), i);
-            }
-        }
+        //Chunk[] Test = new Chunk[9];
+        //Vector3 testStart = Vector3.zero;
+        //int i = 0;
+        //for (int x = -1; x <= 1; x++)
+        //{
+        //    for (int z = -1; z <= 1; z++, i++)
+        //    {
+        //        Test[i] = new Chunk(horizon);
+        //        TestBuildingChunk(Test[i], new Vector3(testStart.x + (x * Section.Length), testStart.y, testStart.z + (z * Section.Length)), i);
+        //    }
+        //}
     }
 
     private void BuildingChunk(Chunk chunk, Vector3 start) 
