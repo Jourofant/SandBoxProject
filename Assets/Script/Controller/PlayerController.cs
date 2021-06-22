@@ -27,50 +27,68 @@ public class PlayerController : MonoBehaviour
 
     private void Rotate() 
     {
-        if (Input.GetKeyDown(lockMouseButton)) {
-            lockMouseFlag = !lockMouseFlag;
-            Cursor.visible = lockMouseFlag;
-        }
-        if (lockMouseFlag) 
-        {
-            float h = Input.GetAxis("Mouse X");
-            float v = Input.GetAxis("Mouse Y");
+        //if (Input.GetKeyDown(lockMouseButton)) {
+        //    lockMouseFlag = !lockMouseFlag;
+        //    Cursor.visible = lockMouseFlag;
+        //}
+        //if (lockMouseFlag) 
+        //{
+        //    float h = Input.GetAxis("Mouse X");
+        //    float v = Input.GetAxis("Mouse Y");
 
-            Vector3 direction = new Vector3(-v, h);
+        //    Vector3 direction = new Vector3(-v, h);
 
-            if (h > 0.1 || h < -0.1 || v > 0.1 || v < -0.1)
-            {
-                print( h + "    " + v);
-                direction *= RotateSpeed * Time.deltaTime;
-            }
+        //    if (h > 0.1 || h < -0.1 || v > 0.1 || v < -0.1)
+        //    {
+        //        print( h + "    " + v);
+        //        direction *= RotateSpeed * Time.deltaTime;
+        //    }
+
+
+            if(Input.GetKey(KeyCode.RightArrow))
+                transform.Rotate(new Vector3(0, 0.1f* RotateSpeed, 0), Space.World);
+            else if(Input.GetKey(KeyCode.LeftArrow))
+                transform.Rotate(new Vector3(0, -0.1f* RotateSpeed, 0), Space.World);
+
+            if (Input.GetKey(KeyCode.UpArrow))
+                transform.Rotate(new Vector3(0.1f* RotateSpeed, 0, 0), Space.Self);
+            else if (Input.GetKey(KeyCode.DownArrow))
+                transform.Rotate(new Vector3(-0.1f* RotateSpeed, 0, 0), Space.Self);
+
+            //transform.Rotate(new Vector3(0.1f, 0, 0), Space.Self);
+
+
+
+
             //transform.rotation *= Quaternion.Euler(direction.x, Mathf.Clamp(direction.y, -30f, 30f), 0);
             //transform.Rotate(new Vector3(direction.x, Mathf.Clamp(direction.y, -30f, 30f), 0), Space.Self);
-        }
+            //transform.forward = new Vector3(0, 0, 1);
+        //}
     }
 
     private void Move()
     {
-        float h = Input.GetAxis("Horizontal");
-        float v = Input.GetAxis("Vertical");
-        float ud = 0f;
-        if (Input.GetKey(KeyCode.Space)) 
-        {
-            ud += MoveSpeed * Time.deltaTime;
-        }
-        if(Input.GetKey(KeyCode.LeftShift))
-        {
-            ud -= MoveSpeed * Time.deltaTime;
-        }
+        //float h = Input.GetAxis("Horizontal");
+        //float v = Input.GetAxis("Vertical");
+        //float ud = 0f;
+        //if (Input.GetKey(KeyCode.Space)) 
+        //{
+        //    ud += MoveSpeed * Time.deltaTime;
+        //}
+        //if(Input.GetKey(KeyCode.LeftShift))
+        //{
+        //    ud -= MoveSpeed * Time.deltaTime;
+        //}
 
-        Vector3 Displacement = new Vector3(h, 0, v);
+        //Vector3 Displacement = new Vector3(h, 0, v);
 
-        if (h > 0.1 || h < -0.1 || v > 0.1 || v < -0.1)
-        {
-            Displacement *= MoveSpeed * Time.deltaTime;
-        }
+        //if (h > 0.1 || h < -0.1 || v > 0.1 || v < -0.1)
+        //{
+        //    Displacement *= MoveSpeed * Time.deltaTime;
+        //}
 
-        Displacement = new Vector3(Displacement.x, ud, Displacement.z);
+        //Displacement = new Vector3(Displacement.x, ud, Displacement.z);
 
-        transform.Translate(Displacement, Space.World);
+        //transform.Translate(Displacement, Space.World);
     }
 }
